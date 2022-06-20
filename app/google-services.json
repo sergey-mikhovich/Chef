@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "779511666451",
+    "project_id": "chef-c1ba5",
+    "storage_bucket": "chef-c1ba5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:779511666451:android:4d98bc3f05a153d3f32ce6",
+        "android_client_info": {
+          "package_name": "com.sergeymikhovich.android.chef"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "779511666451-fp28s38rd8bv194q5h1avdu2j4q09rev.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3wWFEFBfftaITUF1YVZVXTpjwNCW3SuQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "779511666451-fp28s38rd8bv194q5h1avdu2j4q09rev.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

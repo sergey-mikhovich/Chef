@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="card_corner_radius">16dp</dimen>
+    <dimen name="half_card_corner_radius">8dp</dimen>
+    <dimen name="card_elevation">6dp</dimen>
+    <dimen name="half_card_elevation">3dp</dimen>
+    <dimen name="margin_standard">16dp</dimen>
+    <dimen name="half_margin">8dp</dimen>
+    <dimen name="padding_standard">16dp</dimen>
+    <dimen name="half_padding">8dp</dimen>
+    <dimen name="card_title_size">20sp</dimen>
+    <dimen name="card_layout_margin">16dp</dimen>
+    <dimen name="favorite_button_size">32dp</dimen>
+    <dimen name="timer_image_size">24dp</dimen>
+    <dimen name="cooking_time_title_size">16sp</dimen>
+    <dimen name="quantity_ingredients_title_size">16sp</dimen>
+    <dimen name="quantity_image_size">24dp</dimen>
+    <dimen name="collapsing_toolbar_height">300dp</dimen>
+</resources>

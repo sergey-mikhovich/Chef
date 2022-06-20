@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_recipe"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    card_view:cardCornerRadius="@dimen/card_corner_radius"
+    card_view:cardElevation="@dimen/card_elevation">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/image_recipe"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:contentDescription="@string/content_description_recipe_image"
+            app:layout_constraintDimensionRatio="H,4:3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/linearLayout_categoryAndCuisine"
+            tools:src="@drawable/borscht" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout_categoryAndCuisine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/padding_standard"
+            android:paddingEnd="@dimen/padding_standard"
+            android:paddingTop="@dimen/padding_standard"
+            app:layout_constraintBottom_toTopOf="@id/name_recipe"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image_recipe">
+
+            <TextView
+                android:id="@+id/name_category_item_recipe"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_standard"
+                android:layout_weight="1"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                tools:text="Breakfast"/>
+
+            <TextView
+                android:id="@+id/name_cuisine_item_recipe"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                tools:text="German cuisine"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/name_recipe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_standard"
+            android:textSize="@dimen/card_title_size"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/linearLayout_recipeDescription"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linearLayout_categoryAndCuisine"
+            tools:text="Desserts" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout_recipeDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/padding_standard"
+            android:paddingEnd="@dimen/padding_standard"
+            android:paddingBottom="@dimen/padding_standard"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/name_recipe">
+
+            <ImageView
+                android:id="@+id/image_cookingTime"
+                android:layout_width="@dimen/timer_image_size"
+                android:layout_height="@dimen/timer_image_size"
+                android:layout_marginEnd="@dimen/half_margin"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/content_description_timer_image"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/ic_baseline_timer_24"
+                app:tint="@color/orange_primary" />
+
+            <TextView
+                android:id="@+id/text_cookingTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_standard"
+
+                android:textSize="@dimen/cooking_time_title_size"
+                android:textStyle="bold"
+                tools:text="5 min" />
+
+            <ImageView
+                android:id="@+id/image_quantityIngredients"
+                android:layout_width="@dimen/quantity_image_size"
+                android:layout_height="@dimen/quantity_image_size"
+                android:layout_marginEnd="@dimen/half_margin"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/content_description_quantity_image"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/ic_outline_shopping_bag_24"
+                app:tint="@color/orange_primary" />
+
+            <TextView
+                android:id="@+id/text_quantityIngredients"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+
+                android:textSize="@dimen/quantity_ingredients_title_size"
+                android:textStyle="bold"
+                tools:text="8 ingredients" />
+
+            <ImageButton
+                android:id="@+id/image_favorite_button"
+                android:layout_width="@dimen/favorite_button_size"
+                android:layout_height="@dimen/favorite_button_size"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/content_description_favorite_button"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/ic_baseline_favorite_border_24"
+                app:tint="@color/orange_primary" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
+

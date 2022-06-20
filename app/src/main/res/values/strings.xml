@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Chef</string>
+    <string name="recipes_title">Recipes</string>
+    <string name="favorites_title">Favorites</string>
+    <string name="filter">Filter</string>
+    <string name="more">More</string>
+    <string name="filter_content_description">Filter Icon</string>
+    <string name="more_content_description">More Icon</string>
+    <string name="content_description_recipe_image">Recipe Image</string>
+    <string name="content_description_favorite_button">Favorite Button</string>
+    <string name="content_description_timer_image">Timer Image</string>
+    <string name="tab_ingredients">Ingredients</string>
+    <string name="tab_steps">Steps</string>
+    <string name="recipe_details_title_toolbar">Recipe Details</string>
+    <string name="cooking_time_title">%d min</string>
+    <string name="cuisine_title">%s cuisine</string>
+    <string name="quantity_ingredients_title">%d ingredients</string>
+    <string name="content_description_quantity_image">Quantity Ingredients Image</string>
+    <string name="filter_title">Pick a filter</string>
+    <string name="filter_none">None</string>
+    <string name="filter_by_cuisine">By cuisine</string>
+    <string name="filter_by_category">By category</string>
+    <string name="confirm_filter">Confirm</string>
+</resources>

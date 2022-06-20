@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/half_margin"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/filterTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/filter_title"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <RadioGroup
+        android:id="@+id/filterOptions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/half_margin">
+
+        <RadioButton
+            android:id="@+id/noFilter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/filter_none" />
+
+        <RadioButton
+            android:id="@+id/filterByCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/filter_by_category" />
+
+        <RadioButton
+            android:id="@+id/filterByCuisine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/filter_by_cuisine" />
+    </RadioGroup>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Spinner
+            android:id="@+id/categorySpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <Spinner
+            android:id="@+id/cuisineSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/selectButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/half_margin"
+        android:text="@string/confirm_filter" />
+</LinearLayout>
