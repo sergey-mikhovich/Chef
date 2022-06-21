@@ -11,10 +11,5 @@ import java.util.*
 data class Category(
     @PrimaryKey
     val id: String = UUID.randomUUID().toString(),
-    val name: String,
-    val image: String
-) : Parcelable {
-
-    val uri: String
-        get() = "drawable/$image"
-}
+    val name: String
+) : Parcelable

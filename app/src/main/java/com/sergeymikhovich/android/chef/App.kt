@@ -5,10 +5,6 @@ import com.sergeymikhovich.android.chef.model.*
 import com.sergeymikhovich.android.chef.repository.ChefRepository
 import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.count
-import kotlinx.coroutines.flow.onEmpty
-import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -39,18 +35,18 @@ class App : Application() {
 
             if (categories.isEmpty()) {
                 repository.addCategories(listOf(
-                    Category(id = "1", name = "Breakfast", image = "breakfast"),
-                    Category(id = "2", name = "Lunch", image = "lunch"),
-                    Category(id = "3", name = "Dinner", image = "dinner"),
-                    Category(id = "4", name = "Appetizer", image = "appetizer"),
-                    Category(id = "5", name = "Salad", image = "salad"),
-                    Category(id = "6", name = "Main-course", image = "main_course"),
-                    Category(id = "7", name = "Side-dish", image = "side_dish"),
-                    Category(id = "8", name = "Baked-good", image = "baked_good"),
-                    Category(id = "9", name = "Dessert", image = "dessert"),
-                    Category(id = "10", name = "Snack", image = "snack"),
-                    Category(id = "11", name = "Soup", image = "soup"),
-                    Category(id = "12", name = "Sauce", image = "sauce")
+                    Category(id = "1", name = "Breakfast"),
+                    Category(id = "2", name = "Lunch"),
+                    Category(id = "3", name = "Dinner"),
+                    Category(id = "4", name = "Appetizer"),
+                    Category(id = "5", name = "Salad"),
+                    Category(id = "6", name = "Main-course"),
+                    Category(id = "7", name = "Side-dish"),
+                    Category(id = "8", name = "Baked-good"),
+                    Category(id = "9", name = "Dessert"),
+                    Category(id = "10", name = "Snack"),
+                    Category(id = "11", name = "Soup"),
+                    Category(id = "12", name = "Sauce")
                 ))
             }
     }
@@ -60,16 +56,16 @@ class App : Application() {
 
         if (cuisines.isEmpty()) {
             repository.addCuisines(listOf(
-                Cuisine(id = "1", name = "Belarusian", image = "belarusian"),
-                Cuisine(id = "2", name = "Russian", image = "russian"),
-                Cuisine(id = "3", name = "Italian", image = "italian"),
-                Cuisine(id = "4", name = "American", image = "american"),
-                Cuisine(id = "5", name = "Mexican", image = "mexican"),
-                Cuisine(id = "6", name = "Vietnamese", image = "vietnamese"),
-                Cuisine(id = "7", name = "African", image = "african"),
-                Cuisine(id = "8", name = "French", image = "french"),
-                Cuisine(id = "9", name = "Japanese", image = "japanese"),
-                Cuisine(id = "10", name = "Indian", image = "indian")
+                Cuisine(id = "1", name = "Belarusian"),
+                Cuisine(id = "2", name = "Russian"),
+                Cuisine(id = "3", name = "Italian"),
+                Cuisine(id = "4", name = "American"),
+                Cuisine(id = "5", name = "Mexican"),
+                Cuisine(id = "6", name = "Vietnamese"),
+                Cuisine(id = "7", name = "African"),
+                Cuisine(id = "8", name = "French"),
+                Cuisine(id = "9", name = "Japanese"),
+                Cuisine(id = "10", name = "Indian")
             ))
         }
     }
@@ -86,6 +82,7 @@ class App : Application() {
                     categoryId = "4",
                     cookingTime = 45,
                     image = "draniki",
+                    quantityIngredients = 0,
                     instructions = listOf(
                         CookingStepEntry(id = "1", "Into a large bowl, grate potatoes on the star grater*. It " +
                                 "should be the consistency of applesauce. Use a spoon to skim off any excess potato liquid " +
@@ -102,7 +99,8 @@ class App : Application() {
                                 "until potatoes are golden brown then flip and continue sautéing until golden brown and cooked " +
                                 "through (about 4 min per side). Repeat with remaining batter**, adding more oil as needed. " +
                                 "Remove to paper-towel lined plate and serve with sour cream.")
-                    )),
+                    ),
+                    isFavorite = false),
                 Recipe(
                     id = "2",
                     name = "Borscht",
@@ -110,7 +108,9 @@ class App : Application() {
                     categoryId = "11",
                     cookingTime = 130,
                     image = "borscht",
-                    instructions = listOf()),
+                    quantityIngredients = 0,
+                    instructions = listOf(),
+                    isFavorite = false),
                 Recipe(
                     id = "3",
                     name = "Slow Cooker Bolognese Sauce",
@@ -118,6 +118,7 @@ class App : Application() {
                     categoryId = "12",
                     cookingTime = 50,
                     image = "bolognese",
+                    quantityIngredients = 0,
                     instructions = listOf(
                         CookingStepEntry(id = "1", "To begin, prepare the following ingredients. Finely dice the " +
                                 "onion; wash, peel, and finely dice the carrot. If you have a food chopper or processor you can" +
@@ -128,7 +129,8 @@ class App : Application() {
                                 "Make sure you break it up well in the pot using a spoon. Add salt and pepper to your liking. " +
                                 "Mix and when you see that the meat is no longer red, or that it has begun to cook, lower the heat."),
                         CookingStepEntry(id = "4", "Add the tomato, and add more salt and pepper. Cook over low heat for " +
-                                "30-40 more minutes until the sauce thickens."))),
+                                "30-40 more minutes until the sauce thickens.")),
+                    isFavorite = false),
                 Recipe(
                     id = "4",
                     name = "Juicy Barbecued Chicken Thighs",
@@ -136,7 +138,9 @@ class App : Application() {
                     categoryId = "6",
                     cookingTime = 50,
                     image = "bbq_chicken",
-                    instructions = listOf()),
+                    quantityIngredients = 0,
+                    instructions = listOf(),
+                    isFavorite = false),
                 Recipe(
                     id = "5",
                     name = "Tostada",
@@ -144,7 +148,9 @@ class App : Application() {
                     categoryId = "6",
                     cookingTime = 30,
                     image = "tostada",
-                    instructions = listOf()),
+                    quantityIngredients = 0,
+                    instructions = listOf(),
+                    isFavorite = false),
                 Recipe(
                     id = "6",
                     name = "Chocolate Souffle",
@@ -152,7 +158,9 @@ class App : Application() {
                     categoryId = "9",
                     cookingTime = 45,
                     image = "chocolate_souffle",
-                    instructions = listOf()),
+                    quantityIngredients = 0,
+                    instructions = listOf(),
+                    isFavorite = false),
             ))
         }
     }

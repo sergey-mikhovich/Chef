@@ -21,7 +21,7 @@ class RecipeDetailsViewModel @Inject constructor(
     }.stateIn(
         viewModelScope,
         SharingStarted.WhileSubscribed(5000),
-        Recipe(name = "", cuisineId = "", categoryId = "", cookingTime = 0, quantityIngredients = 0, instructions = emptyList(), image = "")
+        Recipe(name = "", cuisineId = "", categoryId = "", cookingTime = 0, quantityIngredients = 0, instructions = emptyList(), image = "", isFavorite = false)
     )
 
     var recipeDetailsFlow: StateFlow<List<CompositionDetails>> = _recipeIdFlow.map { recipeId ->

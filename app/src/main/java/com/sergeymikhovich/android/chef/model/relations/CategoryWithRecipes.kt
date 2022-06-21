@@ -11,6 +11,7 @@ import kotlinx.parcelize.Parcelize
 data class CategoryWithRecipes(
     @Embedded
     val category: Category,
+
     @Relation(
         parentColumn = "id",
         entityColumn = "categoryId"
