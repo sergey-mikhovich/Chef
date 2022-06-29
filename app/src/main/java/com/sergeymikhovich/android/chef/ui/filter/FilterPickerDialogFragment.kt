@@ -84,7 +84,7 @@ class FilterPickerDialogFragment(
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.categories.collect { categories ->
+                viewModel.categories.observe(viewLifecycleOwner) { categories ->
                     binding.categorySpinner.adapter = ArrayAdapter(
                         requireContext(),
                         android.R.layout.simple_spinner_dropdown_item,
@@ -99,7 +99,7 @@ class FilterPickerDialogFragment(
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.cuisines.collect { cuisines ->
+                viewModel.cuisines.observe(viewLifecycleOwner) { cuisines ->
                     binding.cuisineSpinner.adapter = ArrayAdapter(
                         requireContext(),
                         android.R.layout.simple_spinner_dropdown_item,
@@ -111,11 +111,11 @@ class FilterPickerDialogFragment(
 
     private fun filterRecipes() =
         viewLifecycleOwner.lifecycleScope.launch {
-            val selectedCategoryId = viewModel.categories.value.firstOrNull { category ->
+            val selectedCategoryId = viewModel.categories.value?.firstOrNull { category ->
                 category.name == binding.categorySpinner.selectedItem
             }?.id
 
-            val selectedCuisineId = viewModel.cuisines.value.firstOrNull { cuisine ->
+            val selectedCuisineId = viewModel.cuisines.value?.firstOrNull { cuisine ->
                 cuisine.name == binding.cuisineSpinner.selectedItem
             }?.id
 
@@ -128,8 +128,8 @@ class FilterPickerDialogFragment(
             }
 
             val filter = when (binding.filterOptions.checkedRadioButtonId) {
-                R.id.filterByCategory ->ByCategory(selectedCategoryId ?: "")
-                R.id.filterByCuisine -> ByCuisine(selectedCuisineId ?: "")
+                R.id.filterByCategory ->Filter.ByCategory(selectedCategoryId ?: "")
+                R.id.filterByCuisine -> Filter.ByCuisine(selectedCuisineId ?: "")
                 else -> null
             }
 

@@ -17,10 +17,9 @@ import com.sergeymikhovich.android.chef.databinding.ActivityRecipeDetailsBinding
 import com.sergeymikhovich.android.chef.ui.decorations.SpacingItemDecoration
 import com.sergeymikhovich.android.chef.ui.recipeSteps.RecipeStepsAdapter
 import com.sergeymikhovich.android.chef.ui.recipeIngredients.RecipeIngredientsAdapter
+import com.sergeymikhovich.android.chef.utils.Constants.SPAN_COUNT_ONE
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-
-private const val SPAN_COUNT = 1
 
 @AndroidEntryPoint
 class RecipeDetailsActivity : AppCompatActivity() {
@@ -72,13 +71,13 @@ class RecipeDetailsActivity : AppCompatActivity() {
         recyclerView.adapter = ingredientsAdapter
 
         val spacingInPixels = resources.getDimensionPixelSize(R.dimen.card_layout_margin)
-        recyclerView.addItemDecoration(SpacingItemDecoration(SPAN_COUNT, spacingInPixels))
+        recyclerView.addItemDecoration(SpacingItemDecoration(SPAN_COUNT_ONE, spacingInPixels))
     }
 
     private fun loadIngredients() =
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.recipeDetailsFlow.collect { recipeDetails ->
+                viewModel.recipeDetails.observe(this@RecipeDetailsActivity) { recipeDetails ->
                     ingredientsAdapter.submitList(recipeDetails)
                 }
             }
@@ -87,7 +86,7 @@ class RecipeDetailsActivity : AppCompatActivity() {
     private fun loadSteps() =
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.recipeFlow.collect { recipe ->
+                viewModel.recipe.observe(this@RecipeDetailsActivity) { recipe ->
                     stepsAdapter.submitList(recipe.instructions)
                 }
             }
@@ -96,7 +95,7 @@ class RecipeDetailsActivity : AppCompatActivity() {
     private fun loadRecipeDetails() =
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.recipeFlow.collect { recipe ->
+                viewModel.recipe.observe(this@RecipeDetailsActivity) { recipe ->
                     binding.includedRecipeContent.recipeNameComposition.text = recipe.name
                     binding.imageComposition.setImageResource(resources.getIdentifier(recipe.uri, null, packageName))
                 }

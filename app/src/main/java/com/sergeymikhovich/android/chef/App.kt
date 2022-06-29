@@ -109,7 +109,25 @@ class App : Application() {
                     cookingTime = 130,
                     image = "borscht",
                     quantityIngredients = 0,
-                    instructions = listOf(),
+                    instructions = listOf(
+                        CookingStepEntry(id = "1", "Wash meat in cold water, cut into 1 pieces and place in a large " +
+                                "soup pot with 14 cups cold water and 1 Tbsp salt. Bring it to a boil and remove the foam as soon " +
+                                "as it boils (if you wait, it will be hard to get rid of foam as it integrates into the broth and " +
+                                "you'd have to strain it later). Reduce heat, partially cover and simmer 45 minutes - 1 hr, periodically " +
+                                "skimming off any foam that rises to the top."),
+                        CookingStepEntry(id = "2", "Grate beets on the large grater holes (a food processor works amazingly " +
+                                "well). Place them in a large heavy-bottom skillet with 4 Tbsp olive oil and 1 Tbsp vinegar and saute for " +
+                                "5 minutes, then reduce heat to med/low and add 1 Tbsp sugar and 2 Tbsp tomato sauce Mix thoroughly and " +
+                                "saute until starting to soften, stirring occasionally (about 10 min). Remove from pan and set aside."),
+                        CookingStepEntry(id = "3", "In the same skillet (no need to wash it), Saute onion in 1 Tbsp butter for " +
+                                "2 min. Add grated carrot and sautee another 5 min or until softened, adding more oil if it seems too dry."),
+                        CookingStepEntry(id = "4", "Once the meat has been cooking at least 45 min, place sliced potatoes into."),
+                        CookingStepEntry(id = "5", "The soup pot and cook 10 min, then add cabbage, sauteed beets, onion & carrot, " +
+                                "and chopped tomatoes. Cook another 10 minutes or until potatoes can be easily pierced with a fork."),
+                        CookingStepEntry(id = "6", "Add 2 bay leaves, 1/4 tsp pepper, and more salt to taste (I added another 1/2 tsp salt)."),
+                        CookingStepEntry(id = "7", "Chop parsley and pressed garlic then stir them into the soup pot, immediately " +
+                                "cover and remove from heat. Let the pot rest covered for 20 minutes for the flavors to meld.")
+                    ),
                     isFavorite = false),
                 Recipe(
                     id = "3",
@@ -133,13 +151,23 @@ class App : Application() {
                     isFavorite = false),
                 Recipe(
                     id = "4",
-                    name = "Juicy Barbecued Chicken Thighs",
+                    name = "Crispy Buffalo Wings",
                     cuisineId = "4",
-                    categoryId = "6",
-                    cookingTime = 50,
+                    categoryId = "4",
+                    cookingTime = 60,
                     image = "bbq_chicken",
                     quantityIngredients = 0,
-                    instructions = listOf(),
+                    instructions = listOf(
+                        CookingStepEntry(id = "1", "Thoroughly pat dry the chicken with a paper towel. Preheat the " +
+                                "oven to 450˚F. Line a rimmed baking sheet with foil and place a wire rack over the pan."),
+                        CookingStepEntry(id = "2", "Combine the baking powder, salt and garlic powder in a bowl, " +
+                                "sprinkle over the chicken and toss to combine. Arrange chicken on the prepared wire rack."),
+                        CookingStepEntry(id = "3", "Bake the chicken for 25 minutes, flip it over and bake for " +
+                                "another 25 minutes or until crisp and cooked through."),
+                        CookingStepEntry(id = "4", "In a medium-size bowl combine sauce ingredients. Remove chicken " +
+                                "from the baking sheet to a bowl. Drizzle the sauce over the chicken. Toss to coat the chicken " +
+                                "in the sauce. Serve with your favorite dipping sauce.")
+                    ),
                     isFavorite = false),
                 Recipe(
                     id = "5",
@@ -170,24 +198,52 @@ class App : Application() {
 
         if (compositions.isEmpty()) {
             repository.addCompositions(listOf(
-                //Slow Cooker Bolognese Sauce
-                Composition(id = "1", recipeId = "3", ingredientId = "1", quantity = "1", measurementId = "7"),
-                Composition(id = "2", recipeId = "3", ingredientId = "2", quantity = "9", measurementId = "9"),
-                Composition(id = "3", recipeId = "3", ingredientId = "3", quantity = "2", measurementId = "9"),
-                Composition(id = "4", recipeId = "3", ingredientId = "4", quantity = "1/4", measurementId = "8"),
-                Composition(id = "5", recipeId = "3", ingredientId = "5", quantity = "1/2", measurementId = "12"),
-                Composition(id = "6", recipeId = "3", ingredientId = "6", quantity = "2", measurementId = "4"),
-                Composition(id = "7", recipeId = "3", ingredientId = "7", quantity = "9", measurementId = "9"),
-
                 //Meat Stuffed Potato Pancakes (Draniki)
-                Composition(id = "8", recipeId = "1", ingredientId = "8", quantity = "5", measurementId = "7"),
-                Composition(id = "9", recipeId = "1", ingredientId = "3", quantity = "1", measurementId = "6"),
-                Composition(id = "10", recipeId = "1", ingredientId = "9", quantity = "1", measurementId = "6"),
-                Composition(id = "11", recipeId = "1", ingredientId = "10", quantity = "3", measurementId = "1"),
-                Composition(id = "12", recipeId = "1", ingredientId = "11", quantity = "1", measurementId = "1"),
-                Composition(id = "13", recipeId = "1", ingredientId = "6", quantity = "1", measurementId = "2"),
-                Composition(id = "14", recipeId = "1", ingredientId = "12", quantity = "1/8", measurementId = "2"),
-                Composition(id = "15", recipeId = "1", ingredientId = "13", quantity = "1/2", measurementId = "17")
+                Composition(id = "1", recipeId = "1", ingredientId = "8", quantity = "5", measurementId = "7"),
+                Composition(id = "2", recipeId = "1", ingredientId = "3", quantity = "1", measurementId = "6"),
+                Composition(id = "3", recipeId = "1", ingredientId = "9", quantity = "1", measurementId = "6"),
+                Composition(id = "4", recipeId = "1", ingredientId = "10", quantity = "3", measurementId = "1"),
+                Composition(id = "5", recipeId = "1", ingredientId = "11", quantity = "1", measurementId = "1"),
+                Composition(id = "6", recipeId = "1", ingredientId = "6", quantity = "1", measurementId = "2"),
+                Composition(id = "7", recipeId = "1", ingredientId = "12", quantity = "1/8", measurementId = "2"),
+                Composition(id = "8", recipeId = "1", ingredientId = "13", quantity = "1/2", measurementId = "17"),
+
+                //Borscht
+                Composition(id = "9", recipeId = "2", ingredientId = "14", quantity = "1", measurementId = "17"),
+                Composition(id = "10", recipeId = "2", ingredientId = "15", quantity = "14", measurementId = "18"),
+                Composition(id = "11", recipeId = "2", ingredientId = "6", quantity = "1", measurementId = "1"),
+                Composition(id = "12", recipeId = "2", ingredientId = "16", quantity = "3", measurementId = "7"),
+                Composition(id = "13", recipeId = "2", ingredientId = "4", quantity = "4", measurementId = "1"),
+                Composition(id = "14", recipeId = "2", ingredientId = "17", quantity = "1", measurementId = "1"),
+                Composition(id = "15", recipeId = "2", ingredientId = "18", quantity = "1", measurementId = "1"),
+                Composition(id = "16", recipeId = "2", ingredientId = "19", quantity = "2", measurementId = "1"),
+                Composition(id = "17", recipeId = "2", ingredientId = "20", quantity = "1", measurementId = "1"),
+                Composition(id = "18", recipeId = "2", ingredientId = "3", quantity = "1", measurementId = "9"),
+                Composition(id = "19", recipeId = "2", ingredientId = "1", quantity = "2", measurementId = "7"),
+                Composition(id = "20", recipeId = "2", ingredientId = "8", quantity = "3", measurementId = "7"),
+                Composition(id = "21", recipeId = "2", ingredientId = "21", quantity = "1/2", measurementId = "6"),
+                Composition(id = "22", recipeId = "2", ingredientId = "22", quantity = "2", measurementId = "7"),
+                Composition(id = "23", recipeId = "2", ingredientId = "23", quantity = "2", measurementId = "7"),
+                Composition(id = "24", recipeId = "2", ingredientId = "12", quantity = "1/4", measurementId = "2"),
+                Composition(id = "25", recipeId = "2", ingredientId = "24", quantity = "1/4", measurementId = "8"),
+                Composition(id = "26", recipeId = "2", ingredientId = "5", quantity = "2", measurementId = "19"),
+
+                //Slow Cooker Bolognese Sauce
+                Composition(id = "27", recipeId = "3", ingredientId = "1", quantity = "1", measurementId = "7"),
+                Composition(id = "28", recipeId = "3", ingredientId = "2", quantity = "9", measurementId = "9"),
+                Composition(id = "29", recipeId = "3", ingredientId = "3", quantity = "2", measurementId = "9"),
+                Composition(id = "30", recipeId = "3", ingredientId = "4", quantity = "1/4", measurementId = "8"),
+                Composition(id = "31", recipeId = "3", ingredientId = "5", quantity = "1/2", measurementId = "12"),
+                Composition(id = "32", recipeId = "3", ingredientId = "6", quantity = "2", measurementId = "4"),
+                Composition(id = "33", recipeId = "3", ingredientId = "7", quantity = "9", measurementId = "9"),
+
+                //Crispy Buffalo Wings
+                Composition(id = "34", recipeId = "4", ingredientId = "25", quantity = "3", measurementId = "17"),
+                Composition(id = "35", recipeId = "4", ingredientId = "26", quantity = "1", measurementId = "1"),
+                Composition(id = "36", recipeId = "4", ingredientId = "6", quantity = "1", measurementId = "2"),
+                Composition(id = "37", recipeId = "4", ingredientId = "27", quantity = "2", measurementId = "2"),
+                Composition(id = "38", recipeId = "4", ingredientId = "20", quantity = "1/4", measurementId = "8"),
+                Composition(id = "39", recipeId = "4", ingredientId = "18", quantity = "1", measurementId = "1")
             ))
         }
     }
@@ -210,6 +266,20 @@ class App : Application() {
                 Ingredient(id = "11", name = "Sour Cream"),
                 Ingredient(id = "12", name = "Black Pepper"),
                 Ingredient(id = "13", name = "Ground Pork"),
+                Ingredient(id = "14", name = "Beef"),
+                Ingredient(id = "15", name = "Water"),
+                Ingredient(id = "16", name = "Beet"),
+                Ingredient(id = "17", name = "Vinegar"),
+                Ingredient(id = "18", name = "Sugar"),
+                Ingredient(id = "19", name = "Tomato sauce"),
+                Ingredient(id = "20", name = "Unsalted butter"),
+                Ingredient(id = "21", name = "Cabbage"),
+                Ingredient(id = "22", name = "Tomato"),
+                Ingredient(id = "23", name = "Bay leave"),
+                Ingredient(id = "24", name = "Chopped parsley"),
+                Ingredient(id = "25", name = "Chicken wings"),
+                Ingredient(id = "26", name = "Backing powder"),
+                Ingredient(id = "27", name = "Garlic powder")
             ))
         }
     }
@@ -219,23 +289,25 @@ class App : Application() {
 
         if (measurements.isEmpty()) {
             repository.addMeasurements(listOf(
-                Measurement(id = "1", "Tablespoon", "tbsp"),
-                Measurement(id = "2", "Teaspoon", "tsp"),
-                Measurement(id = "3", "Pinch", "pinch"),
-                Measurement(id = "4", "Pinches", "pinches"),
-                Measurement(id = "5", "Gram", "gram"),
-                Measurement(id = "6", "Unit", "unit"),
-                Measurement(id = "7", "Units", "units"),
-                Measurement(id = "8", "Cup", "cup"),
-                Measurement(id = "9", "Ounce", "oz"),
-                Measurement(id = "10", "Milliliter", "mL"),
-                Measurement(id = "11", "Stalk", "stalk"),
-                Measurement(id = "12", "Clove", "clove"),
-                Measurement(id = "13", "Kilogram", "kg"),
-                Measurement(id = "14", "Handful", "handful"),
-                Measurement(id = "15", "Small jar", "small jar"),
-                Measurement(id = "16", "Large jar", "large jar"),
-                Measurement(id = "17", "Pound", "pound")
+                Measurement(id = "1", name = "Tablespoon", abbreviation =  "tbsp"),
+                Measurement(id = "2", name = "Teaspoon", abbreviation = "tsp"),
+                Measurement(id = "3", name = "Pinch", abbreviation = "pinch"),
+                Measurement(id = "4", name = "Pinches", abbreviation = "pinches"),
+                Measurement(id = "5", name = "Gram", abbreviation = "gram"),
+                Measurement(id = "6", name = "Unit", abbreviation = "unit"),
+                Measurement(id = "7", name = "Units", abbreviation = "units"),
+                Measurement(id = "8", name = "Cup", abbreviation = "cup"),
+                Measurement(id = "9", name = "Ounce", abbreviation = "oz"),
+                Measurement(id = "10", name = "Milliliter", abbreviation = "mL"),
+                Measurement(id = "11", name = "Stalk", abbreviation = "stalk"),
+                Measurement(id = "12", name = "Clove", abbreviation = "clove"),
+                Measurement(id = "13", name = "Kilogram", abbreviation = "kg"),
+                Measurement(id = "14", name = "Handful", abbreviation = "handful"),
+                Measurement(id = "15", name = "Small jar", abbreviation = "small jar"),
+                Measurement(id = "16", name = "Large jar", abbreviation = "large jar"),
+                Measurement(id = "17", name = "Pound", abbreviation = "pound"),
+                Measurement(id = "18", name = "Cups", abbreviation =  "cups"),
+                Measurement(id = "19", name = "Cloves", abbreviation = "cloves")
             ))
         }
     }

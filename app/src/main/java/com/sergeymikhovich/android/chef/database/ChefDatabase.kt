@@ -21,7 +21,9 @@ const val DATABASE_VERSION = 1
     version = DATABASE_VERSION,
     exportSchema = false
 )
-@TypeConverters(CookingStepEntryConverter::class)
+@TypeConverters(
+    CookingStepEntryConverter::class
+)
 abstract class ChefDatabase : RoomDatabase() {
 
     abstract fun categoryDao(): CategoryDao

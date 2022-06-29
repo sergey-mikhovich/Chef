@@ -13,6 +13,9 @@ interface CompositionDao {
     suspend fun getCompositions(): List<Composition>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun addComposition(composition: Composition)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addCompositions(compositions: List<Composition>)
 
     @Transaction
@@ -21,5 +24,9 @@ interface CompositionDao {
 
     @Transaction
     @Query("SELECT * FROM composition WHERE recipeId = :recipeId")
-    suspend fun getCompositionsDetailsByRecipeId(recipeId: String): List<CompositionDetails>
+    fun getCompositionsDetailsByRecipeId(recipeId: String): LiveData<List<CompositionDetails>>
+
+    @Transaction
+    @Delete
+    suspend fun deleteComposition(composition: Composition)
 }

@@ -2,6 +2,7 @@
     <string name="app_name">Chef</string>
     <string name="recipes_title">Recipes</string>
     <string name="favorites_title">Favorites</string>
+    <string name="search_recipes_title">Search Recipes</string>
     <string name="filter">Filter</string>
     <string name="more">More</string>
     <string name="filter_content_description">Filter Icon</string>
@@ -21,4 +22,6 @@
     <string name="filter_by_cuisine">By cuisine</string>
     <string name="filter_by_category">By category</string>
     <string name="confirm_filter">Confirm</string>
+    <string name="search_web">Searching for recipes on the web…</string>
+    <string name="search">Search</string>
 </resources>

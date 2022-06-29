@@ -8,20 +8,19 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.sergeymikhovich.android.chef.R
 import com.sergeymikhovich.android.chef.databinding.FavoriteRecipesFragmentBinding
 import com.sergeymikhovich.android.chef.ui.decorations.SpacingItemDecoration
-import com.sergeymikhovich.android.chef.ui.filter.ByCategory
-import com.sergeymikhovich.android.chef.ui.filter.ByCuisine
 import com.sergeymikhovich.android.chef.ui.filter.Filter
 import com.sergeymikhovich.android.chef.ui.filter.FilterPickerDialogFragment
 import com.sergeymikhovich.android.chef.ui.recipeDetails.RecipeDetailsActivity
 import com.sergeymikhovich.android.chef.ui.recipies.adapter.RecipesAdapter
+import com.sergeymikhovich.android.chef.utils.Constants.SPAN_COUNT_ONE
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-
-private const val SPAN_COUNT = 1
 
 @AndroidEntryPoint
 class FavoriteRecipesFragment : Fragment() {
@@ -67,7 +66,31 @@ class FavoriteRecipesFragment : Fragment() {
             LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
 
         val spacingInPixels = resources.getDimensionPixelSize(R.dimen.card_layout_margin)
-        recyclerView.addItemDecoration(SpacingItemDecoration(SPAN_COUNT, spacingInPixels))
+        recyclerView.addItemDecoration(SpacingItemDecoration(SPAN_COUNT_ONE, spacingInPixels))
+
+        val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(
+            ItemTouchHelper.UP or ItemTouchHelper.DOWN,
+            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
+        ) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return true
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition
+                val recipeDetail = adapter.currentList[position]
+                viewModel.deleteRecipe(recipeDetail.recipe)
+                viewModel.deleteCompositionsByRecipeId(recipeDetail.recipe.id)
+            }
+        }
+
+        ItemTouchHelper(itemTouchHelperCallback).apply {
+            attachToRecyclerView(recyclerView)
+        }
     }
 
     private fun loadFavoriteRecipes() {
@@ -76,8 +99,12 @@ class FavoriteRecipesFragment : Fragment() {
                 viewModel.recipeDetailsFlow.collect { recipeDetails ->
 
                     val filteredFavoriteRecipes = when (filter) {
-                        is ByCategory -> recipeDetails.filter { it.category.id == (filter as ByCategory).categoryId }
-                        is ByCuisine -> recipeDetails.filter { it.cuisine.id == (filter as ByCuisine).cuisineId }
+                        is Filter.ByCategory -> {
+                            recipeDetails.filter { it.category.id == (filter as Filter.ByCategory).categoryId }
+                        }
+                        is Filter.ByCuisine -> {
+                            recipeDetails.filter { it.cuisine.id == (filter as Filter.ByCuisine).cuisineId }
+                        }
                         else -> recipeDetails
                     }.filter { it.recipe.isFavorite }
 

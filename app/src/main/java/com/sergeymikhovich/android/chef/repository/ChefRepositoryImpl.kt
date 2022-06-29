@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import com.sergeymikhovich.android.chef.database.dao.*
 import com.sergeymikhovich.android.chef.model.*
 import com.sergeymikhovich.android.chef.model.relations.*
+import com.sergeymikhovich.android.chef.networking.RecipesApiService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
@@ -14,7 +15,8 @@ class ChefRepositoryImpl @Inject constructor(
     private val recipeDao: RecipeDao,
     private val compositionDao: CompositionDao,
     private val measurementDao: MeasurementDao,
-    private val ingredientDao: IngredientDao
+    private val ingredientDao: IngredientDao,
+    private val recipesApiService: RecipesApiService
 ) : ChefRepository {
 
     //Cuisine
@@ -45,25 +47,44 @@ class ChefRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getRecipeById(recipeId: String): Recipe = recipeDao.getRecipeById(recipeId)
+    override fun getRecipeById(recipeId: String): LiveData<Recipe> = recipeDao.getRecipeById(recipeId)
 
     override suspend fun getRecipes(): List<Recipe> = recipeDao.getRecipes()
+
+    override suspend fun addRecipe(recipe: Recipe) = recipeDao.addRecipe(recipe)
 
     override suspend fun addRecipes(recipes: List<Recipe>) = recipeDao.addRecipes(recipes)
 
     override suspend fun updateRecipe(recipe: Recipe) = recipeDao.updateRecipe(recipe)
 
+    override suspend fun deleteRecipe(recipe: Recipe) = recipeDao.deleteRecipe(recipe)
+
+    override suspend fun searchRecipes(query: String, pageNumber: Number) =
+        recipesApiService.searchForRecipes(query, pageNumber)
+
 
     //Composition
     override suspend fun getCompositions(): List<Composition> = compositionDao.getCompositions()
+
+    override suspend fun addComposition(composition: Composition) = compositionDao.addComposition(composition)
 
     override suspend fun addCompositions(compositions: List<Composition>) = compositionDao.addCompositions(compositions)
 
     override suspend fun getCompositionsByRecipeId(recipeId: String): List<Composition> =
         compositionDao.getCompositionsByRecipeId(recipeId)
 
-    override suspend fun getCompositionsDetailsByRecipeId(recipeId: String): List<CompositionDetails> =
+    override fun getCompositionsDetailsByRecipeId(recipeId: String): LiveData<List<CompositionDetails>> =
         compositionDao.getCompositionsDetailsByRecipeId(recipeId)
+
+    override suspend fun deleteComposition(composition: Composition) = compositionDao.deleteComposition(composition)
+
+    override suspend fun deleteCompositionsByRecipeId(recipeId: String) {
+        val compositions = compositionDao.getCompositionsByRecipeId(recipeId)
+
+        for (composition in compositions) {
+            compositionDao.deleteComposition(composition)
+        }
+    }
 
 
     //Measurement

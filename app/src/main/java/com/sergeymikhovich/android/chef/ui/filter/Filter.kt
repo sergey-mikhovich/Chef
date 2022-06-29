@@ -1,8 +1,9 @@
 package com.sergeymikhovich.android.chef.ui.filter
 
-sealed class Filter
+sealed class Filter {
 
-class ByCategory(val categoryId: String) : Filter()
+    class ByCategory(val categoryId: String) : Filter()
 
-class ByCuisine(val cuisineId: String) : Filter()
+    class ByCuisine(val cuisineId: String) : Filter()
+}
 

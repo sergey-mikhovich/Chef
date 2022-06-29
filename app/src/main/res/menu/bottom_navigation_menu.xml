@@ -8,6 +8,12 @@
         android:title="@string/recipes_title"
         app:showAsAction="ifRoom|withText"/>
     <item
+        android:id="@+id/searchRecipes"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_search_24"
+        android:title="@string/search"
+        app:showAsAction="ifRoom|withText"/>
+    <item
         android:id="@+id/favoriteRecipes"
         android:enabled="true"
         android:icon="@drawable/favorites_selector"
